@@ -1,67 +1,36 @@
 ﻿// Const_Explicit_Operator.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
-#include <iostream>
-using namespace std;
-
-class Array {
-	int size;
-	int* array;
-public:
-	explicit Array(int size = 10);
-	~Array();
-	int getSize() const;
-	int getValue(int index) const;
-	void setValue(int index, int value);
-	void display(int index) const;
-};
-
-Array::Array(int size) {
-	this->size = size;
-	array = new int[size];
-}
-Array::~Array() {
-	delete[] array;
-}
-
-int Array::getSize() const {
-	return size;
-}
-
-int Array::getValue(int index) const{
-	return array[index];
-}
-
-void Array::setValue(int index, int value) {
-	array[index] = value;
-}
-
-void Array::display(int index) const {
-	cout << getValue(index) << ", ";
-}
-
-void display(const Array& array){
-	for (size_t i = 0; i < array.getSize(); i++)
-	{
-		array.display(i);
-	}
-	cout << endl;
-}
+#include"Explicit.h"
+#include "Operator.h"
 
 int main()
 {
-	cout << "Dynamic array" << endl;
-	int size = 4;
-	Array array(size);
-	for (size_t i = 0; i < size; i++)
-	{
-		array.setValue(i, size - 1);
+	Point point1(2, 4);
+	Point point2(1, 5);
+	if (Point::isEqual(point1, point2)) {
+		cout << "Yes" << endl;
 	}
-	display(array);
+	if (point1 == point2) {
+		cout << "Yes" << endl;
+	}
 
-	cout << "!!!!!!!!" << endl;
-
-	display(5);
+	cout << (point1 ^ point2) << endl;
+	Point point3 = point1 + point2;
+	point3.display();
+	point3 = point1 * point2;
+	cout << endl;
+	cout << point3;
+	cout << endl;
+	point3 = point3 + 8;
+	cout << point3;
+	point3 += 7;
+	cout << endl;
+	cout << point3;
+	cout << endl;
+	Array array(4);
+	array[0] = 5;
+	cout << array[0] << endl;
 
 }
 
