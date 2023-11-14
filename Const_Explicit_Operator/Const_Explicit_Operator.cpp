@@ -4,45 +4,64 @@
 #include <iostream>
 using namespace std;
 
-class Account {
-	double sum;
-	const double rate;
+class Array {
+	int size;
+	int* array;
 public:
-	Account(double Rate, double Sum) : rate{ Rate } {
-		sum = Sum;
-	}
-	double getRate() const{
-		return rate;
-	}
-	double getIncome() {
-		return sum / rate * 100;
-	}
-	double getIncome() const {
-		return sum / rate * 100;
-	}
-	double getSum() const{
-		return sum;
-	}
-	double getSum(){
-		sum += getIncome();
-		return sum;
-	}
-
+	explicit Array(int size = 10);
+	~Array();
+	int getSize() const;
+	int getValue(int index) const;
+	void setValue(int index, int value);
+	void display(int index) const;
 };
+
+Array::Array(int size) {
+	this->size = size;
+	array = new int[size];
+}
+Array::~Array() {
+	delete[] array;
+}
+
+int Array::getSize() const {
+	return size;
+}
+
+int Array::getValue(int index) const{
+	return array[index];
+}
+
+void Array::setValue(int index, int value) {
+	array[index] = value;
+}
+
+void Array::display(int index) const {
+	cout << getValue(index) << ", ";
+}
+
+void display(const Array& array){
+	for (size_t i = 0; i < array.getSize(); i++)
+	{
+		array.display(i);
+	}
+	cout << endl;
+}
 
 int main()
 {
-	Account account1(5, 2000);
-	const Account account2(8, 5000);
+	cout << "Dynamic array" << endl;
+	int size = 4;
+	Array array(size);
+	for (size_t i = 0; i < size; i++)
+	{
+		array.setValue(i, size - 1);
+	}
+	display(array);
 
-	account1.getRate();
-	account2.getRate();
+	cout << "!!!!!!!!" << endl;
 
-	account1.getSum();
-	account2.getSum();
-
-	account1.getIncome();
-	account2.getIncome();
+	display(5);
 
 }
 
