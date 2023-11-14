@@ -4,24 +4,46 @@
 #include <iostream>
 using namespace std;
 
-class Data {
-    int day = 23;
-    int month;
-    int year;
+class Account {
+	double sum;
+	const double rate;
 public:
-    void setDay(int value) {
-        day = value;
-    }
-    int getDay() {
-        return day;
-    }
+	Account(double Rate, double Sum) : rate{ Rate } {
+		sum = Sum;
+	}
+	double getRate() const{
+		return rate;
+	}
+	double getIncome() {
+		return sum / rate * 100;
+	}
+	double getIncome() const {
+		return sum / rate * 100;
+	}
+	double getSum() const{
+		return sum;
+	}
+	double getSum(){
+		sum += getIncome();
+		return sum;
+	}
+
 };
 
 int main()
 {
-    Data data;
-    const int i{ data.getDay() };
-    cout << i << endl;
+	Account account1(5, 2000);
+	const Account account2(8, 5000);
+
+	account1.getRate();
+	account2.getRate();
+
+	account1.getSum();
+	account2.getSum();
+
+	account1.getIncome();
+	account2.getIncome();
+
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
