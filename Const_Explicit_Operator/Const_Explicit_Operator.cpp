@@ -2,10 +2,26 @@
 //
 
 #include <iostream>
+using namespace std;
+
+class Data {
+    int day = 23;
+    int month;
+    int year;
+public:
+    void setDay(int value) {
+        day = value;
+    }
+    int getDay() {
+        return day;
+    }
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Data data;
+    const int i{ data.getDay() };
+    cout << i << endl;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
